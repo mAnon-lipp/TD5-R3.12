@@ -5,16 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/src/style.css" rel="stylesheet" />
   </head>
-  <body>
-    <header>
-      <div class="icons"></div>
-      <img src="./Icons/icon-github.svg">
-      <img src="./Icons/icon-frontend-mentor.svg">
-      <img src="./Icons/icon-linkedin.svg">
-      <img src="./Icons/icon-twitter.svg">
-      <p> Nice to meet you! I'm <span>Adam Keyes</span> .</p>
-      <p>Based in the UK, I'm a front-end developer passionate about building accessible web apps that users love.</p>
-      <button>CONTACT</button>
+  <body style="background: var(--background-color-Bg); min-height: 100vh; font-family: var(--font-family-base); color: var(--text-color-base);" class="flex flex-col items-center justify-start px-4 py-8">
+    <header class="w-full max-w-sm flex flex-col items-center gap-6 pattern-rings pattern-circle">
+      <!-- Username -->
+      <span style="color: var(--color-fg); font-weight: var(--font-weight-bold);" class="text-lg tracking-widest mb-2">adamkeyes</span>
+      <!-- Profile + Icons Grid (sans absolute) -->
+      <section class="grid grid-rows-[auto_1fr] place-items-center mb-2" style="width: 256px; margin-top: -24px;">
+        <!-- Social Icons (ligne 1) -->
+        <span class="flex gap-6 mb-2">
+          <img src="./Icons/icon-github.svg" alt="GitHub" style="filter: brightness(0) invert(1);" class="w-6 h-6 hover:scale-110 transition" />
+          <img src="./Icons/icon-frontend-mentor.svg" alt="Frontend Mentor" style="filter: brightness(0) invert(1);" class="w-6 h-6 hover:scale-110 transition" />
+          <img src="./Icons/icon-linkedin.svg" alt="LinkedIn" style="filter: brightness(0) invert(1);" class="w-6 h-6 hover:scale-110 transition" />
+          <img src="./Icons/icon-twitter.svg" alt="Twitter" style="filter: brightness(0) invert(1);" class="w-6 h-6 hover:scale-110 transition" />
+        </span>
+        <!-- Profile Image (ligne 2) -->
+        <img src="./Profile/image-profile-mobile.webp" alt="Profile" class="w-60 object-cover shadow-lg" />
+      </section>
+      <!-- Content -->
+      <section class="w-full flex flex-col items-center text-center">
+        <p style="color: var(--text-color-base); font-weight: var(--font-weight-bold);" class="text-3xl mb-4">
+          Nice to meet you!<br />
+          I'm <span style="color: var(--text-color-accent); text-decoration: underline; text-underline-offset: 4px;">Adam Keyes</span>.
+        </p>
+        <p style="color: var(--text-color-secondary);" class="text-base mb-8">
+          Based in the UK, I'm a front-end developer passionate about building accessible web apps that users love.
+        </p>
+        <button
+          style="color: var(--color-green); border-bottom: 2px solid var(--color-green); font-weight: var(--font-weight-bold); background: transparent;"
+          class="px-6 py-2 transition"
+          onmouseover="this.style.color='var(--color-green-300)';this.style.borderBottomColor='var(--color-green-300)'"
+          onmouseout="this.style.color='var(--color-green)';this.style.borderBottomColor='var(--color-green)'"
+        >
+          CONTACT ME
+        </button>
+      </section>
     </header>
+    <main class="w-full max-w-sm mt-10">
+      <section class="text-white  py-8 px-4 flex flex-col items-center gap-6 border-t border-b border-gray-400">
+        <div class="flex flex-col items-center">
+          <h2 class="text-2xl font-bold mb-1">HTML</h2>
+          <p class="text-base text-gray-300">4 Years Experience</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <h2 class="text-2xl font-bold mb-1">CSS</h2>
+          <p class="text-base text-gray-300">4 Years Experience</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <h2 class="text-2xl font-bold mb-1">JavaScript</h2>
+          <p class="text-base text-gray-300">4 Years Experience</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <h2 class="text-2xl font-bold mb-1">Accessibility</h2>
+          <p class="text-base text-gray-300">4 Years Experience</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <h2 class="text-2xl font-bold mb-1">TailwindCss</h2>
+          <p class="text-base text-gray-300">3 Years Experience</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <h2 class="text-2xl font-bold mb-1">Sass</h2>
+          <p class="text-base text-gray-300">3 Years Experience</p>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

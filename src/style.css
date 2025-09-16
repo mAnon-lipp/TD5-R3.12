@@ -1,6 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
 
+@theme inline {
+  --color-fg: var(--clr-white);
+  --color-bg: var(--clr-gray-900);
+
+  --color-gray-300: var(--clr-gray-300);
+  --color-gray-400: var(--clr-gray-400);
+  --color-gray-800: var(--clr-gray-800);
+  --color-gray-900: var(--clr-gray-900);
+
+  --color-green: var(--clr-green);
+  --color-green-300: var(--clr-green-300);
+
+  --color-primary: var(--clr-green);
+
+  --background-color-Bg: var(--clr-gray-900);
+
+  /* Variables liées au texte */
+  --font-family-base: var(--ff);
+  --font-weight-bold: var(--fw);
+  --text-color-base: var(--clr-white);
+  --text-color-secondary: var(--clr-gray-400);
+  --text-color-accent: var(--clr-green);
+}
+
 :root {
   --ff: "Space Grotesk", sans-serif;
   --fw: bold;
@@ -15,29 +39,31 @@
 
   --clr-green: oklch(87.1% 0.15 154.449);
   --clr-green-300: oklch(79.2% 0.209 151.711);
+  
 }
 
-body{
-  background-color: var(--color-gray-900);
-  color : var(--clr-white);
-  font-family: var(--ff);
+/* Ajout des patterns SVG en background via des utilitaires Tailwind customisés */
+
+.pattern-rings {
+  background-image: url('/public/Pattern/pattern-rings.svg');
+  background-repeat: no-repeat;
+  background-position: left 0 top 40px;
+  background-size: 140px auto;
 }
 
-.icons{
-  display: flex;
+.pattern-circle {
+  background-image: url('/public/Pattern/pattern-circle.svg');
+  background-repeat: no-repeat;
+  background-position: right -40px bottom 40px;
+  background-size: 80px auto;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Pour permettre l'empilement des backgrounds */
+.pattern-rings.pattern-circle {
+  background-image:
+    url('/public/Pattern/pattern-rings.svg'),
+    url('/public/Pattern/pattern-circle.svg');
+  background-repeat: no-repeat, no-repeat;
+  background-position: left 0 top 40px, right -40px bottom 40px;
+  background-size: 140px auto, 80px auto;
 }
