@@ -4,20 +4,14 @@
 @theme inline {
   --color-fg: var(--clr-white);
   --color-bg: var(--clr-gray-900);
-
   --color-gray-300: var(--clr-gray-300);
   --color-gray-400: var(--clr-gray-400);
   --color-gray-800: var(--clr-gray-800);
   --color-gray-900: var(--clr-gray-900);
-
   --color-green: var(--clr-green);
   --color-green-300: var(--clr-green-300);
-
   --color-primary: var(--clr-green);
-
   --background-color-Bg: var(--clr-gray-900);
-
-  /* Variables liées au texte */
   --font-family-base: var(--ff);
   --font-weight-bold: var(--fw);
   --text-color-base: var(--clr-white);
@@ -28,42 +22,130 @@
 :root {
   --ff: "Space Grotesk", sans-serif;
   --fw: bold;
-
-  /* Primitive Tokens */
   --clr-white: oklch(1 0 0);
-
   --clr-gray-300: oklch(87.2% 0.01 258.338);
   --clr-gray-400: oklch(70.7% 0.022 261.325);
   --clr-gray-800: oklch(27.8% 0.033 256.848);
   --clr-gray-900: oklch(21% 0.034 264.665);
-
   --clr-green: oklch(87.1% 0.15 154.449);
   --clr-green-300: oklch(79.2% 0.209 151.711);
-  
 }
 
-/* Ajout des patterns SVG en background via des utilitaires Tailwind customisés */
-
-.pattern-rings {
-  background-image: url('/public/Pattern/pattern-rings.svg');
-  background-repeat: no-repeat;
-  background-position: left 0 top 40px;
-  background-size: 140px auto;
+/* Patterns */
+@utility pattern-rings {
+  background: url('/public/Pattern/pattern-rings.svg') no-repeat left 0 top 40px / 140px auto;
 }
 
-.pattern-circle {
-  background-image: url('/public/Pattern/pattern-circle.svg');
-  background-repeat: no-repeat;
-  background-position: right -40px bottom 40px;
-  background-size: 80px auto;
+@utility pattern-circle {
+  background: url('/public/Pattern/pattern-circle.svg') no-repeat right -40px bottom 40px / 80px auto;
 }
 
-/* Pour permettre l'empilement des backgrounds */
-.pattern-rings.pattern-circle {
-  background-image:
-    url('/public/Pattern/pattern-rings.svg'),
-    url('/public/Pattern/pattern-circle.svg');
-  background-repeat: no-repeat, no-repeat;
-  background-position: left 0 top 40px, right -40px bottom 40px;
-  background-size: 140px auto, 80px auto;
+@utility pattern-rings-circle {
+  background: 
+    url('/public/Pattern/pattern-rings.svg') no-repeat left 0 top 40px / 140px auto,
+    url('/public/Pattern/pattern-circle.svg') no-repeat right -40px bottom 40px / 80px auto;
 }
+
+/* Base globals */
+@layer base {
+  :root { color-scheme: dark; }
+  body {
+    font-family: var(--font-family-base);
+    color: var(--text-color-base);
+    background: var(--color-bg);
+  }
+}
+
+/* Helpers en utilities */
+@utility bg-primary { background: var(--color-bg); }
+@utility text-base { color: var(--text-color-base); } /* attention au conflit avec text-base de Tailwind */
+@utility text-secondary { color: var(--text-color-secondary); }
+@utility text-accent { color: var(--text-color-accent); }
+@utility text-fg { color: var(--color-fg); }
+@utility text-gray-light { color: var(--color-gray-300); }
+@utility font-base { font-family: var(--font-family-base); }
+
+/* Components */
+@layer components {
+  /* Profile section */
+  .profile-section {
+    width: 256px;
+    margin-top: -24px;
+  }
+
+  /* Icons */
+  .icon-link {
+    @apply block hover:scale-110 transition;
+    color: var(--color-fg);
+  }
+  .icon-link svg { fill: currentColor; }
+
+  /* Boutons */
+  .btn-primary {
+    @apply px-6 py-2 transition font-bold bg-transparent;
+    color: var(--color-green);
+    border-bottom: 2px solid var(--color-green);
+  }
+  .btn-primary:hover {
+    color: var(--color-green-300);
+    border-bottom-color: var(--color-green-300);
+  }
+
+  .btn-secondary {
+    @apply font-bold transition;
+    color: var(--color-green);
+    border-bottom: 2px solid var(--color-green);
+  }
+  .btn-secondary:hover {
+    color: var(--color-green-300);
+    border-bottom-color: var(--color-green-300);
+  }
+
+  /* Skills section */
+  .skills-section {
+    @apply py-8 px-4 flex flex-col items-center gap-6 border-t border-b;
+    border-color: var(--color-gray-400);
+  }
+  .skill-item { @apply flex flex-col items-center; }
+
+  /* Projects */
+  .project-card { /* Styles pour les cartes de projets */ }
+  .tech-list { @apply flex gap-4 text-sm mb-4; }
+  .tech-list li { color: var(--color-gray-300); }
+  .project-links { @apply flex gap-4; }
+  .project-link {
+    @apply font-bold underline;
+    color: var(--color-green);
+  }
+
+  /* Footer */
+  .footer-section {
+    @apply w-full max-w-sm mt-16 flex flex-col items-center gap-6;
+    background: var(--color-gray-800);
+  }
+  .contact-section { @apply w-full flex flex-col items-start px-6 py-10 rounded-lg mb-8; }
+  .contact-form { @apply flex flex-col gap-6 w-full; }
+
+  .form-input, .form-textarea {
+    @apply bg-transparent border-b py-2 px-0 text-base outline-none;
+    color: var(--color-gray-300);
+    border-color: var(--color-gray-400);
+    font-family: var(--font-family-base);
+  }
+  .form-textarea { @apply resize-none; }
+
+  .form-submit { @apply flex justify-end items-center relative mt-4 w-full; }
+  .btn-submit {
+    @apply font-bold border-0 bg-transparent px-0 py-2 z-10;
+    color: var (--color-green);
+    font-family: var(--font-family-base);
+  }
+  .btn-submit:hover { color: var(--color-green-300); }
+
+  .footer-divider {
+    @apply w-full mb-6;
+    border-color: var(--color-gray-400);
+  }
+  .footer-content { @apply flex flex-col items-center gap-4 w-full; }
+}
+
